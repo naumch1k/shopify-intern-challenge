@@ -1,6 +1,7 @@
 import { Page } from '../page';
 import { Header } from '../header';
 import { PromptForm } from '../prompt-form';
+import { PromptResult } from '../prompt-result';
 import { Footer } from '../footer';
 
 export const App = () => {
@@ -11,6 +12,7 @@ export const App = () => {
       </Page.Header>
       <Page.Content>
         <PromptForm/>
+        <PromptResult/>
       </Page.Content>
       <Page.Footer>
         <Footer/>
