@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "prepare": "husky install",
     "lint:js": "eslint src/**/*.{js,jsx} --fix",
-    "lint:css": "stylelint **/*.css --fix"
+    "lint:css": "stylelint **/*.module.css --fix"
   },
   "browserslist": {
     "production": [
