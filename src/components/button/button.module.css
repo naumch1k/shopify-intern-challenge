@@ -1,0 +1,30 @@
+.button {
+  min-width: 185px;
+  height: 72px;
+  padding: 12px 18px;
+  border: 1px solid var(--color-text-primary);
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  letter-spacing: 4px;
+  line-height: 1;
+  outline: none;
+  text-transform: uppercase;
+  transition: color .5s, background-color .5s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  background-color: var(--color-text-primary);
+  color: var(--color-bg-primary);
+}
+
+.button:disabled {
+  border: 1px solid var(--color-text-primary-30);
+  color: var(--color-text-primary-30);
+  cursor: not-allowed;
+}
+
+.button:disabled:hover {
+  background-color: transparent;
+}
