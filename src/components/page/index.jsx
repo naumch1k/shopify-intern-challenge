@@ -14,7 +14,7 @@ export const Page = ({ children }) => {
 };
 
 Page.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.array
 };
 
 Page.Header = PageHeader;

@@ -1,5 +1,6 @@
 import { Page } from '../page';
 import { Header } from '../header';
+import { Footer } from '../footer';
 
 export const App = () => {
   return (
@@ -8,7 +9,9 @@ export const App = () => {
         <Header/>
       </Page.Header>
       <Page.Content/>
-      <Page.Footer/>
+      <Page.Footer>
+        <Footer/>
+      </Page.Footer>
     </Page>
   );
 };
