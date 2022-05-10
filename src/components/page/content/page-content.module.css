@@ -1,0 +1,5 @@
+.root {
+  max-width: var(--page-content-max-width);
+  flex-grow: 1;
+  margin: 0 auto;
+}

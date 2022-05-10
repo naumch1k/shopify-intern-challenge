@@ -1,0 +1,6 @@
+.root {
+  width: 100%;
+  max-width: var(--page-content-max-width);
+  flex-shrink: 0;
+  margin: 0 auto;
+}

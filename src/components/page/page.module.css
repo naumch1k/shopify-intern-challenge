@@ -1,0 +1,8 @@
+.root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 50px 0;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}

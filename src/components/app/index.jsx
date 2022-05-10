@@ -1,7 +1,11 @@
+import { Page } from '../page';
+
 export const App = () => {
   return (
-    <div className="app">
-      <h1>Fun with AI</h1>
-    </div>
+    <Page>
+      <Page.Header/>
+      <Page.Content/>
+      <Page.Footer/>
+    </Page>
   );
 };
