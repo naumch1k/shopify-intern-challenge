@@ -1,8 +1,15 @@
 .root {
   display: flex;
+  min-width: var(--page-content-min-width);
   min-height: 100vh;
   flex-direction: column;
   padding: 50px 0;
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
+}
+
+@media (max-width: 500px) {
+  .root {
+    padding: 28px 0 36px;
+  }
 }
