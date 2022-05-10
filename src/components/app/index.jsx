@@ -4,6 +4,8 @@ import { PromptForm } from '../prompt-form';
 import { PromptResult } from '../prompt-result';
 import { Footer } from '../footer';
 
+import data from '../../mocks/cards-data.json';
+
 export const App = () => {
   return (
     <Page>
@@ -12,7 +14,9 @@ export const App = () => {
       </Page.Header>
       <Page.Content>
         <PromptForm/>
-        <PromptResult/>
+        <PromptResult
+          data={data}
+        />
       </Page.Content>
       <Page.Footer>
         <Footer/>

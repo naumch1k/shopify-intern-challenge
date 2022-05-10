@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { SectionTitle } from '../section-title';
+import { Card } from '../card/card';
 import styles from './prompt-result.module.css';
 
 export const PromptResult = ({ data }) => {
@@ -10,7 +11,14 @@ export const PromptResult = ({ data }) => {
         text="responses"
       />
       {data
-        ? <p>data!</p>
+        ? <ul className={styles.list}>
+          {data.map((item) => (
+            <Card
+              key={item.id}
+              data={item}
+            />
+          ))}
+        </ul>
         : <p className={styles.message}>No prior searches yet</p>
       }
     </section>
