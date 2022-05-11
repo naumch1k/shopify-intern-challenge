@@ -5,6 +5,7 @@ import styles from './form.module.css';
 
 export const Form = (props) => {
   const {
+    submitButtonText,
     onChange,
     onSubmit,
     values,
@@ -34,7 +35,7 @@ export const Form = (props) => {
         <div className={styles.submitGroup}>
           <Button
             type="submit"
-            text="Submit"
+            text={submitButtonText}
             disabled={!isValid}
           />
         </div>

@@ -6,7 +6,12 @@ import styles from './prompt-form.module.css';
 
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-export const PromptForm = ({ onPrompt }) => {
+export const PromptForm = (props) => {
+  const {
+    submitButtonText,
+    onPrompt,
+  } = props;
+
   const {
     values,
     errors,
@@ -28,6 +33,7 @@ export const PromptForm = ({ onPrompt }) => {
         text="Enter your prompt"
       />
       <Form
+        submitButtonText={submitButtonText}
         onChange={handleChange}
         onSubmit={handleSubmit}
         values={values}
@@ -39,5 +45,6 @@ export const PromptForm = ({ onPrompt }) => {
 };
 
 PromptForm.propTypes = {
+  submitButtonText: PropTypes.string,
   onPrompt: PropTypes.func
 };
