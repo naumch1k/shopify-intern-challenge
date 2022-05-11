@@ -21,14 +21,15 @@ export const Form = (props) => {
       <fieldset className={styles.fieldset}>
         <textarea
           className={styles.input}
-          id="prompt-input"
-          name="prompt-input"
+          id="prompt"
+          name="prompt"
           placeholder="Start typing here"
           required
           onChange={onChange}
+          value={values['prompt']}
         />
         <span className={styles.error}>
-          {errors['prompt-input'] && errors['prompt-input']}
+          {errors['prompt'] && errors['prompt']}
         </span>
         <div className={styles.submitGroup}>
           <Button
@@ -43,6 +44,7 @@ export const Form = (props) => {
 };
 
 Form.propTypes = {
+  submitButtonText: PropTypes.string,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
   values: PropTypes.object,

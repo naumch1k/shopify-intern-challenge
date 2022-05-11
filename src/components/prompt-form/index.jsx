@@ -17,8 +17,7 @@ export const PromptForm = ({ onPrompt }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onPrompt();
-
+    onPrompt(values);
     /* TODO: reset form on 200 response only */
     resetForm();
   };
@@ -29,8 +28,8 @@ export const PromptForm = ({ onPrompt }) => {
         text="Enter your prompt"
       />
       <Form
-        onSubmit={handleSubmit}
         onChange={handleChange}
+        onSubmit={handleSubmit}
         values={values}
         errors={errors}
         isValid={isValid}
