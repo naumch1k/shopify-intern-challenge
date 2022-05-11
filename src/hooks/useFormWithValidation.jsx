@@ -20,7 +20,6 @@ function useFormWithValidation() {
       setValues(newValues);
       setErrors(newErrors);
       setIsValid(newIsValid);
-      event.target.closest('form').reset();
     },
     [setValues, setErrors, setIsValid]
   );

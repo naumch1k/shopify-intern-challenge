@@ -27,7 +27,7 @@ export const Form = (props) => {
           placeholder="Start typing here"
           required
           onChange={onChange}
-          value={values['prompt']}
+          value={values['prompt'] ? values['prompt'] : ''}
         />
         <span className={styles.error}>
           {errors['prompt'] && errors['prompt']}
