@@ -8,5 +8,6 @@
 @media (max-width: 500px) {
   .root {
     width: calc(100% - 38px);
+    padding-top: 20px;
   }
 }
