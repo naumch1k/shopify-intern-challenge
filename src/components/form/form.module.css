@@ -23,6 +23,19 @@
   border-color: var(--color-text-primary);
 }
 
+.error {
+  overflow: hidden;
+  height: 20px;
+  margin: 10px 0 0;
+  color: var(--color-accent);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .submitGroup {
-  margin-top: 40px;
+  margin-top: 20px;
 }
