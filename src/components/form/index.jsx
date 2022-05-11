@@ -1,28 +1,22 @@
+import PropTypes from 'prop-types';
+
 import { Button } from '../button';
 import styles from './form.module.css';
-import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-export const Form = () => {
+export const Form = (props) => {
   const {
+    onChange,
+    onSubmit,
     values,
     errors,
-    isValid,
-    handleChange,
-    resetForm,
-  } = useFormWithValidation({});
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    resetForm();
-    // eslint-disable-next-line no-console
-    console.log('handleSubmit');
-  };
+    isValid
+  } = props;
 
   return (
     <form
       name="prompt-form"
       values={values}
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
     >
       <fieldset className={styles.fieldset}>
         <textarea
@@ -31,7 +25,7 @@ export const Form = () => {
           name="prompt-input"
           placeholder="Start typing here"
           required
-          onChange={handleChange}
+          onChange={onChange}
         />
         <span className={styles.error}>
           {errors['prompt-input'] && errors['prompt-input']}
@@ -46,4 +40,12 @@ export const Form = () => {
       </fieldset>
     </form>
   );
+};
+
+Form.propTypes = {
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  values: PropTypes.object,
+  errors: PropTypes.object,
+  isValid: PropTypes.bool
 };
