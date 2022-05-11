@@ -2,20 +2,21 @@ import PropTypes from 'prop-types';
 
 import { SectionTitle } from '../section-title';
 import { Card } from '../card/card';
+import { isEmptyArray } from '../../shared/helpers/is-empty-array';
 import styles from './prompt-result.module.css';
 
-export const PromptResult = ({ data }) => {
+export const PromptResult = ({ cards }) => {
   return (
     <section className={styles.root}>
       <SectionTitle
         text="responses"
       />
-      {data
+      {!isEmptyArray(cards)
         ? <ul className={styles.list}>
-          {data.map((item) => (
+          {cards.map((card) => (
             <Card
-              key={item.id}
-              data={item}
+              key={card.id}
+              data={card}
             />
           ))}
         </ul>
@@ -26,6 +27,6 @@ export const PromptResult = ({ data }) => {
 };
 
 PromptResult.propTypes = {
-  data: PropTypes.array
+  cards: PropTypes.array
 };
 

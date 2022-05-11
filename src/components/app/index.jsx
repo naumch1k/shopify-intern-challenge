@@ -7,16 +7,26 @@ import { PromptResult } from '../prompt-result';
 import { Footer } from '../footer';
 import openAiApi from '../../utils/openAiApi';
 
-import data from '../../mocks/cards-data.json';
-
 export const App = () => {
   const [promptSubmitButtonText, setPromptSubmitButtonText] = useState('Submit');
+  const [cards, setCards] = useState([]);
 
   const handlePrompt = (data) => {
+    const openAiRequest = data.prompt;
+
     setPromptSubmitButtonText('Wait a sec');
 
     openAiApi
       .sendPrompt(data)
+      .then(({ data }) => {
+        setCards([
+          {
+            id: data.id,
+            prompt: openAiRequest,
+            response: data.choices[0].text
+          },
+          ...cards]);
+      })
       .catch((err) => {
         // eslint-disable-next-line no-console
         console.log(err);
@@ -37,7 +47,7 @@ export const App = () => {
           onPrompt={handlePrompt}
         />
         <PromptResult
-          data={data}
+          cards={cards}
         />
       </Page.Content>
       <Page.Footer>
