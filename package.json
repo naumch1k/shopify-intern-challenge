@@ -1,6 +1,7 @@
 {
   "name": "shopify-intern-challenge",
   "version": "0.1.0",
+  "homepage": "https://naumch1k.github.io/shopify-intern-challenge/",
   "private": true,
   "description": "Shopify Intern Challenge Fun with AI",
   "author": {
@@ -17,6 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "prepare": "husky install",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "lint:js": "eslint src/**/*.{js,jsx} --fix",
     "lint:css": "stylelint **/*.module.css --fix"
   },
@@ -35,6 +38,7 @@
   "devDependencies": {
     "eslint": "8.15.0",
     "eslint-plugin-react": "7.29.4",
+    "gh-pages": "4.0.0",
     "husky": "4.3.8",
     "stylelint": "14.8.2",
     "stylelint-config-idiomatic-order": "8.1.0",
