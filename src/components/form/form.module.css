@@ -10,7 +10,7 @@
   width: 100%;
   min-height: 160px;
   padding: 10px;
-  border-color: var(--color-text-primary-30);
+  border-color: var(--color-primary-dark-translucent);
   background-color: inherit;
   font-size: 16px;
   outline: none;
@@ -20,7 +20,7 @@
 
 .input:hover,
 .input:focus-visible {
-  border-color: var(--color-text-primary);
+  border-color: var(--color-primary-dark);
 }
 
 .error {

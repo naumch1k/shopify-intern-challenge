@@ -4,8 +4,8 @@
   min-height: 100vh;
   flex-direction: column;
   padding: 50px 0;
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
 }
 
 @media (max-width: 500px) {
