@@ -26,5 +26,6 @@ In the project directory, you can run:
 > Runs the linters
 
 ## TO DO
-- [ ] save responses if the user leaves or reloads the page
+- [x] save responses if the user leaves or reloads the page
+- [ ] add reset search button
 - [ ] notify user when server return errors

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Page } from '../page';
 import { Header } from '../header';
@@ -11,6 +11,14 @@ export const App = () => {
   const [promptSubmitButtonText, setPromptSubmitButtonText] = useState('Submit');
   const [cards, setCards] = useState([]);
 
+  useEffect(() => {
+    const localSavedSearches = localStorage.getItem('savedSearches');
+
+    if (localSavedSearches) {
+      setCards(JSON.parse(localSavedSearches));
+    }
+  }, []);
+
   const handlePrompt = (data) => {
     const openAiRequest = data.prompt;
 
@@ -19,6 +27,15 @@ export const App = () => {
     openAiApi
       .sendPrompt(data)
       .then(({ data }) => {
+        localStorage.setItem('savedSearches', JSON.stringify([
+          {
+            id: data.id,
+            prompt: openAiRequest,
+            response: data.choices[0].text
+          },
+          ...cards]
+
+        ));
         setCards([
           {
             id: data.id,
