@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { SectionTitle } from '../section-title';
 import { Card } from '../card/card';
 import { isEmptyArray } from '../../shared/helpers/is-empty-array';
-import styles from './prompt-result.module.css';
+import styles from './search-result-section.module.css';
 
-export const PromptResult = ({ cards }) => {
+export const SearchResultSection = ({ cards }) => {
   return (
     <section className={styles.root}>
       <SectionTitle
@@ -26,7 +26,7 @@ export const PromptResult = ({ cards }) => {
   );
 };
 
-PromptResult.propTypes = {
+SearchResultSection.propTypes = {
   cards: PropTypes.array
 };
 

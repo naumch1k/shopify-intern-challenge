@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import { Page } from '../page';
 import { Header } from '../header';
-import { PromptForm } from '../prompt-form';
-import { PromptResult } from '../prompt-result';
+import { PromptSection } from '../prompt-section';
+import { SearchResultSection } from '../search-result-section';
 import { Footer } from '../footer';
 import openAiApi from '../../utils/openAiApi';
 
@@ -42,11 +42,11 @@ export const App = () => {
         <Header/>
       </Page.Header>
       <Page.Content>
-        <PromptForm
+        <PromptSection
           submitButtonText={promptSubmitButtonText}
           onPrompt={handlePrompt}
         />
-        <PromptResult
+        <SearchResultSection
           cards={cards}
         />
       </Page.Content>

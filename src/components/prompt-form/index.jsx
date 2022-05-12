@@ -1,50 +1,54 @@
 import PropTypes from 'prop-types';
 
-import { SectionTitle } from '../section-title';
-import { Form } from '../form';
+import { Button } from '../button';
 import styles from './prompt-form.module.css';
-
-import useFormWithValidation from '../../hooks/useFormWithValidation';
 
 export const PromptForm = (props) => {
   const {
     submitButtonText,
-    onPrompt,
-  } = props;
-
-  const {
+    onChange,
+    onSubmit,
     values,
     errors,
-    isValid,
-    handleChange,
-    resetForm,
-  } = useFormWithValidation({});
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onPrompt(values);
-    /* TODO: reset form on 200 response only */
-    resetForm();
-  };
+    isValid
+  } = props;
 
   return (
-    <section className={styles.root}>
-      <SectionTitle
-        text="Enter your prompt"
-      />
-      <Form
-        submitButtonText={submitButtonText}
-        onChange={handleChange}
-        onSubmit={handleSubmit}
-        values={values}
-        errors={errors}
-        isValid={isValid}
-      />
-    </section>
+    <form
+      name="prompt-form"
+      values={values}
+      onSubmit={onSubmit}
+    >
+      <fieldset className={styles.fieldset}>
+        <textarea
+          className={styles.input}
+          id="prompt"
+          name="prompt"
+          placeholder="Start typing here"
+          required
+          onChange={onChange}
+          value={values['prompt'] ? values['prompt'] : ''}
+        />
+        <span className={styles.error}>
+          {errors['prompt'] && errors['prompt']}
+        </span>
+        <div className={styles.submitGroup}>
+          <Button
+            type="submit"
+            text={submitButtonText}
+            disabled={!isValid}
+          />
+        </div>
+      </fieldset>
+    </form>
   );
 };
 
 PromptForm.propTypes = {
   submitButtonText: PropTypes.string,
-  onPrompt: PropTypes.func
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  values: PropTypes.object,
+  errors: PropTypes.object,
+  isValid: PropTypes.bool
 };
