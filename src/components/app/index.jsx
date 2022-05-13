@@ -53,6 +53,11 @@ export const App = () => {
       });
   };
 
+  const handleClearList = () => {
+    localStorage.clear();
+    setCards([]);
+  };
+
   return (
     <Page>
       <Page.Header>
@@ -65,6 +70,7 @@ export const App = () => {
         />
         <SearchResultSection
           cards={cards}
+          onClearList={handleClearList}
         />
       </Page.Content>
       <Page.Footer>

@@ -27,5 +27,6 @@ In the project directory, you can run:
 
 ## TO DO
 - [x] save responses if the user leaves or reloads the page
-- [ ] add reset search button
+- [x] add reset search button
+- [ ] double check if user wants to reset search history
 - [ ] notify user when server return errors
