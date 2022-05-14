@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Button } from '../button';
+import { Button } from '../ui/button';
 import styles from './prompt-form.module.css';
 
 export const PromptForm = (props) => {
