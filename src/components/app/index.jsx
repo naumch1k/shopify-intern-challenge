@@ -6,6 +6,7 @@ import { PromptSection } from '../prompt-section';
 import { SearchResultSection } from '../search-result-section';
 import { Footer } from '../footer';
 import { Popup } from '../popup';
+import { usePopup } from '../../hooks/usePopup';
 import openAiApi from '../../utils/openAiApi';
 
 import { promptFormErrorMessages } from '../../shared/constants/prompt-form-error-messages';
@@ -14,8 +15,7 @@ import { DEFAULT_ERROR_MESSAGE } from '../../shared/constants/default-error-mess
 export const App = () => {
   const [promptSubmitButtonText, setPromptSubmitButtonText] = useState('Submit');
   const [cards, setCards] = useState([]);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [popupMessage, setPopupMessage] = useState('');
+  const [popupSettings, { changePopupSettings, closePopup }] = usePopup();
 
   useEffect(() => {
     const localSavedSearches = localStorage.getItem('savedSearches');
@@ -53,13 +53,13 @@ export const App = () => {
       .catch((err) => {
         switch (err) {
         case 400:
-          setPopupMessage(promptFormErrorMessages.BAD_REQUEST);
+          changePopupSettings({ message: promptFormErrorMessages.BAD_REQUEST });
           break;
         case 401:
-          setPopupMessage(promptFormErrorMessages.UNAUTHORIZED);
+          changePopupSettings({ message: promptFormErrorMessages.UNAUTHORIZED });
           break;
         default:
-          setPopupMessage(DEFAULT_ERROR_MESSAGE);
+          changePopupSettings({ message: DEFAULT_ERROR_MESSAGE });
         }
       })
       .finally(() => {
@@ -68,19 +68,25 @@ export const App = () => {
   };
 
   const handleClearList = () => {
-    localStorage.clear();
-    setCards([]);
+    changePopupSettings({
+      isOpen: true,
+      message: 'Are you sure you want to clear search history?',
+      action: 'Clear',
+      onActionClick: handleConfirmClearList,
+    });
   };
 
-  const closePopup = () => {
-    setIsPopupOpen(false);
+  const handleConfirmClearList = () => {
+    localStorage.clear();
+    setCards([]);
+    closePopup();
   };
 
   useEffect(() => {
-    if (popupMessage) {
-      setIsPopupOpen(true);
+    if (popupSettings.message) {
+      changePopupSettings({ isOpen: true });
     }
-  }, [popupMessage]);
+  }, [popupSettings.message]);
 
   return (
     <>
@@ -103,9 +109,11 @@ export const App = () => {
         </Page.Footer>
       </Page>
       <Popup
-        isOpen={isPopupOpen}
-        message={popupMessage}
+        isOpen={popupSettings.isOpen}
+        message={popupSettings.message}
         onClose={closePopup}
+        action={popupSettings.action}
+        onActionClick={popupSettings.onActionClick}
       />
     </>
 

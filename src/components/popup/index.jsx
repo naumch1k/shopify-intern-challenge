@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
+import { Button } from '../ui/button';
 import { CloseButton } from '../close-button';
 import styles from './popup.module.css';
 
@@ -11,6 +12,8 @@ export const Popup = (props) => {
     isOpen,
     message,
     onClose,
+    action,
+    onActionClick,
   } = props;
 
   return (
@@ -19,6 +22,14 @@ export const Popup = (props) => {
         <p className={styles.message}>
           {message}
         </p>
+        {action
+        && <Button
+          size="m"
+          view="secondary"
+          text={action}
+          onClick={onActionClick}
+        />
+        }
         <CloseButton
           ariaLabel="Close popup"
           onClose={onClose}
@@ -31,5 +42,7 @@ export const Popup = (props) => {
 Popup.propTypes = {
   isOpen: PropTypes.bool,
   message: PropTypes.string,
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  action: PropTypes.string,
+  onActionClick: PropTypes.func
 };
