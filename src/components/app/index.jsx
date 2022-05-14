@@ -5,11 +5,17 @@ import { Header } from '../header';
 import { PromptSection } from '../prompt-section';
 import { SearchResultSection } from '../search-result-section';
 import { Footer } from '../footer';
+import { Popup } from '../popup';
 import openAiApi from '../../utils/openAiApi';
+
+import { promptFormErrorMessages } from '../../shared/constants/prompt-form-error-messages';
+import { DEFAULT_ERROR_MESSAGE } from '../../shared/constants/default-error-message';
 
 export const App = () => {
   const [promptSubmitButtonText, setPromptSubmitButtonText] = useState('Submit');
   const [cards, setCards] = useState([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
 
   useEffect(() => {
     const localSavedSearches = localStorage.getItem('savedSearches');
@@ -45,8 +51,16 @@ export const App = () => {
           ...cards]);
       })
       .catch((err) => {
-        // eslint-disable-next-line no-console
-        console.log(err);
+        switch (err) {
+        case 400:
+          setPopupMessage(promptFormErrorMessages.BAD_REQUEST);
+          break;
+        case 401:
+          setPopupMessage(promptFormErrorMessages.UNAUTHORIZED);
+          break;
+        default:
+          setPopupMessage(DEFAULT_ERROR_MESSAGE);
+        }
       })
       .finally(() => {
         setPromptSubmitButtonText('Submit');
@@ -58,25 +72,43 @@ export const App = () => {
     setCards([]);
   };
 
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  useEffect(() => {
+    if (popupMessage) {
+      setIsPopupOpen(true);
+    }
+  }, [popupMessage]);
+
   return (
-    <Page>
-      <Page.Header>
-        <Header/>
-      </Page.Header>
-      <Page.Content>
-        <PromptSection
-          submitButtonText={promptSubmitButtonText}
-          onPrompt={handlePrompt}
-        />
-        <SearchResultSection
-          cards={cards}
-          onClearList={handleClearList}
-        />
-      </Page.Content>
-      <Page.Footer>
-        <Footer/>
-      </Page.Footer>
-    </Page>
+    <>
+      <Page>
+        <Page.Header>
+          <Header/>
+        </Page.Header>
+        <Page.Content>
+          <PromptSection
+            submitButtonText={promptSubmitButtonText}
+            onPrompt={handlePrompt}
+          />
+          <SearchResultSection
+            cards={cards}
+            onClearList={handleClearList}
+          />
+        </Page.Content>
+        <Page.Footer>
+          <Footer/>
+        </Page.Footer>
+      </Page>
+      <Popup
+        isOpen={isPopupOpen}
+        message={popupMessage}
+        onClose={closePopup}
+      />
+    </>
+
   );
 };
 

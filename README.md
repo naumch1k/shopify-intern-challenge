@@ -29,4 +29,6 @@ In the project directory, you can run:
 - [x] save responses if the user leaves or reloads the page
 - [x] add reset search button
 - [ ] double check if user wants to reset search history
-- [ ] notify user when server return errors
+- [x] notify user when server return errors
+- [ ] close popup with ESC
+- [ ] close popup with overlay click
