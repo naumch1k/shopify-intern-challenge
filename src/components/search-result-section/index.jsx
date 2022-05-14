@@ -8,11 +8,12 @@ import styles from './search-result-section.module.css';
 export const SearchResultSection = (props) => {
   const {
     cards,
-    onClearList,
+    onClearSearchResults,
   } = props;
 
   return (
     <section className={styles.root}>
+      {/* TODO: refactor title and clear button to sector header to avoid buttons absolute positioning */}
       <SectionTitle
         text="responses"
       />
@@ -28,7 +29,7 @@ export const SearchResultSection = (props) => {
           </ul>
           <button
             className={styles.clearButton}
-            onClick={onClearList}
+            onClick={onClearSearchResults}
             type="button"
           >
             Clear list
@@ -43,6 +44,5 @@ export const SearchResultSection = (props) => {
 
 SearchResultSection.propTypes = {
   cards: PropTypes.array,
-  onClearList: PropTypes.func
+  onClearSearchResults: PropTypes.func
 };
-

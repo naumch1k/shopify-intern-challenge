@@ -67,16 +67,16 @@ export const App = () => {
       });
   };
 
-  const handleClearList = () => {
+  const handleClearSearchResults = () => {
     changePopupSettings({
       isOpen: true,
       message: 'Are you sure you want to clear search history?',
       action: 'Clear',
-      onActionClick: handleConfirmClearList,
+      onActionClick: handleConfirmClearSearchResults,
     });
   };
 
-  const handleConfirmClearList = () => {
+  const handleConfirmClearSearchResults = () => {
     localStorage.clear();
     setCards([]);
     closePopup();
@@ -101,7 +101,7 @@ export const App = () => {
           />
           <SearchResultSection
             cards={cards}
-            onClearList={handleClearList}
+            onClearSearchResults={handleClearSearchResults}
           />
         </Page.Content>
         <Page.Footer>
@@ -119,4 +119,3 @@ export const App = () => {
 
   );
 };
-
