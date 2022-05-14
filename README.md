@@ -30,5 +30,5 @@ In the project directory, you can run:
 - [x] add reset search button
 - [x] double check if user wants to reset search history
 - [x] notify user when server return errors
-- [ ] close popup with ESC
+- [x] close popup with ESC
 - [ ] close popup with overlay click

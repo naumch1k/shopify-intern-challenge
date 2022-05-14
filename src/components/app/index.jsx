@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { Page } from '../page';
 import { Header } from '../header';
@@ -82,11 +82,24 @@ export const App = () => {
     closePopup();
   };
 
+  const closeWithEsc = useCallback(e => {
+    if (e.key === 'Escape') {
+      closePopup();
+    }
+  }, []);
+
   useEffect(() => {
     if (popupSettings.message) {
       changePopupSettings({ isOpen: true });
     }
   }, [popupSettings.message]);
+
+  useEffect(() => {
+    if (popupSettings.isOpen) {
+      document.addEventListener('keydown', closeWithEsc);
+    }
+    return () => document.removeEventListener('keydown', closeWithEsc);
+  }, [closeWithEsc, popupSettings.isOpen]);
 
   return (
     <>
