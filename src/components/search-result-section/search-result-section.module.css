@@ -28,7 +28,8 @@
   transition: opacity .5s ease;
 }
 
-.clearButton:hover {
+.clearButton:hover,
+.clearButton:focus-visible {
   opacity: .6;
 }
 
