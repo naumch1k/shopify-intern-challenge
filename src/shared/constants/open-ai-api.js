@@ -1,1 +1,1 @@
-export const OPEN_AI_API = 'https://api.openai.com/v1/engines/text-curie-001/completions';
+export const OPEN_AI_API = 'https://api.openai.com/v1/engines/gpt-3.5-turbo-instruct/completions';
